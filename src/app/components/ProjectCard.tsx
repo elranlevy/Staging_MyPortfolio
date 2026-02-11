@@ -80,6 +80,8 @@ export function ProjectCard({
           <img
             src={imageSrc}
             alt={title}
+            loading="lazy"
+            decoding="async"
             className="w-full h-auto object-contain max-h-[400px] md:max-h-[500px] lg:max-h-[700px]"
           />
         </motion.div>

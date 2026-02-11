@@ -108,12 +108,18 @@ export function AboutPage({ onNavigateHome, onNavigateContact }: AboutPageProps)
           <img 
             src={imgPhotoMobile} 
             alt="Elran Levy" 
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             className="lg:hidden w-full h-auto object-cover"
           />
           {/* Desktop/Tablet Image */}
           <img 
             src={imgPhoto} 
             alt="Elran Levy" 
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             className="hidden lg:block w-full h-auto object-cover"
           />
         </motion.div>

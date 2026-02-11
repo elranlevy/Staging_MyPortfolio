@@ -2,6 +2,7 @@ import { defineConfig, type Plugin } from 'vite'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 /**
  * Resolves Figma Make's `figma:asset/<hash>.png` imports to local `src/assets/<hash>.png`.
@@ -25,10 +26,48 @@ export default defineConfig({
     figmaAssetResolver(),
     react(),
     tailwindcss(),
+    ViteImageOptimizer({
+      /* ── PNG ────────────────────────────────────────────────── */
+      png: {
+        quality: 75,          // lossy compression — big savings
+        effort: 6,            // higher = slower but smaller (0-10)
+      },
+      /* ── JPEG (in case any are added later) ─────────────────── */
+      jpeg: {
+        quality: 75,
+        mozjpeg: true,
+      },
+      /* ── WebP — auto-generated for every PNG/JPEG at build ──── */
+      webp: {
+        quality: 78,
+        effort: 5,
+        lossless: false,
+      },
+      /* ── SVG ────────────────────────────────────────────────── */
+      svg: {
+        multipass: true,
+        plugins: [
+          { name: 'preset-default' },
+        ],
+      },
+    }),
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+    },
+  },
+  build: {
+    /* Increase chunk warning limit — portfolio images are large assets */
+    chunkSizeWarningLimit: 1500,
+    rollupOptions: {
+      output: {
+        /* Split vendor JS from app JS */
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          motion: ['motion'],
+        },
+      },
     },
   },
 })

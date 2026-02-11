@@ -92,11 +92,13 @@ export function CaseStudyHero({
         )}
       </div>
 
-      {/* Hero image */}
+      {/* Hero image — above the fold, prioritize loading */}
       <div className={heroImageClassName ?? "w-full max-w-3xl lg:max-w-4xl flex-1 min-h-0 flex items-start mt-[var(--space-4)]"}>
         <img
           src={heroImage}
           alt={heroImageAlt}
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-auto object-contain rounded-[var(--radius-2xl)]"
         />
       </div>
@@ -328,7 +330,7 @@ export function CaseStudyImage({
       alt={alt}
       loading="lazy"
       decoding="async"
-      className={`w-full h-auto object-cover ${className}`}
+      className={`w-full h-auto object-cover content-visibility-auto ${className}`}
     />
   );
 }

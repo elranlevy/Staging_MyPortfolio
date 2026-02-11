@@ -216,6 +216,14 @@
     line-height: var(--leading-normal);
     color: var(--text-primary);
   }
+
+  /* ── Image performance ─────────────────────────────────────── */
+
+  /* Skip rendering off-screen images until they near the viewport */
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
+  }
 }
 
 /* ── Keyframe animations ──────────────────────────────────────
