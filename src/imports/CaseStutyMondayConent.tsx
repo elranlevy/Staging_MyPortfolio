@@ -9,13 +9,12 @@ import {
   Brain,
   FlaskConical,
   Layers,
-  MessageSquare,
+  SlidersHorizontal,
   Target,
   Repeat,
-  TrendingUp,
-  SlidersHorizontal,
   Eye,
   Lightbulb,
+  MessageSquare,
 } from 'lucide-react';
 
 import svgPaths from './svg-6er71w85ab';
@@ -36,30 +35,16 @@ import imgAbChart from '@/assets/monday-ab-chart.png';
 import whyStandardVideo from '@/assets/why-standard-video.mp4';
 import whyProVideo from '@/assets/why-pro-video.mp4';
 
-/* ── Scroll-triggered animation ──────────────────────────────── */
-function Reveal({
-  children,
-  className = '',
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
+/* ── Scroll-triggered reveal ─────────────────────────────────── */
+function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.7, delay, ease: 'easeOut' }}
-    >
+    <motion.div className={className} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.7, delay, ease: 'easeOut' }}>
       {children}
     </motion.div>
   );
 }
 
-/* ── Centered vertical line divider ──────────────────────────── */
+/* ── Vertical divider ────────────────────────────────────────── */
 function VerticalDivider() {
   return (
     <div className="flex justify-center py-8 md:py-10">
@@ -68,246 +53,68 @@ function VerticalDivider() {
   );
 }
 
-/* ── Bold centered section heading ───────────────────────────── */
-function SectionHeading({ children }: { children: ReactNode }) {
-  return (
-    <h2
-      className="text-2xl md:text-3xl lg:text-[34px] font-semibold text-center mb-10 md:mb-14"
-      style={{ color: 'var(--text-primary)' }}
-    >
-      {children}
-    </h2>
-  );
-}
-
-/* ── Icon row ────────────────────────────────────────────────── */
-function IconRow({
-  icons,
-}: {
-  icons: { icon: ReactNode; label?: string }[];
-}) {
-  return (
-    <div className="flex items-center justify-center gap-10 md:gap-16 mb-8 md:mb-10">
-      {icons.map((item, i) => (
-        <div key={i} className="flex flex-col items-center gap-2">
-          <div style={{ color: 'var(--text-primary)' }}>{item.icon}</div>
-          {item.label && (
-            <p className="text-[10px] uppercase tracking-wider text-center" style={{ color: 'var(--text-tertiary)' }}>
-              {item.label}
-            </p>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/* ── KPI / Impact callout card ───────────────────────────────── */
-function KpiCard({
-  label,
-  children,
-}: {
-  label: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="max-w-xl mx-auto">
-      <div
-        className="relative overflow-hidden rounded-2xl px-8 py-10 md:px-12 md:py-12 text-center"
-        style={{ backgroundColor: '#e8eeff' }}
-      >
-        <div className="absolute -left-4 -top-4 opacity-[0.08]">
-          <TrendingUp className="w-32 h-32" strokeWidth={1.2} style={{ color: 'var(--brand)' }} />
-        </div>
-        <p
-          className="text-[11px] uppercase tracking-[0.25em] mb-4 relative"
-          style={{ color: 'var(--text-tertiary)' }}
-        >
-          {label}
-        </p>
-        <div className="relative">{children}</div>
-      </div>
-    </div>
-  );
-}
-
 /* ── Lazy video ──────────────────────────────────────────────── */
 function LazyVideo({ src, className = '' }: { src: string; className?: string }) {
-  return (
-    <video
-      src={src}
-      autoPlay
-      loop
-      muted
-      playsInline
-      preload="metadata"
-      className={className}
-    />
-  );
+  return <video src={src} autoPlay loop muted playsInline preload="metadata" className={className} />;
 }
 
 /* ── monday.com Logo (SVG) ───────────────────────────────────── */
 function MondayLogo() {
   return (
-    <svg
-      className="w-full max-w-[180px] h-auto mx-auto"
-      fill="none"
-      viewBox="0 0 335.374 69.7297"
-    >
+    <svg className="w-full max-w-[180px] h-auto mx-auto" fill="none" viewBox="0 0 335.374 69.7297">
       <path d={svgPaths.p3fb55a00} fill="#FB275D" />
       <path d={svgPaths.p2c590700} fill="#FFCC00" />
       <path d={svgPaths.pfa68400} fill="#00CA72" />
-      <path
-        clipRule="evenodd"
-        d={svgPaths.p26892b00}
-        fill="black"
-        fillRule="evenodd"
-      />
+      <path clipRule="evenodd" d={svgPaths.p26892b00} fill="black" fillRule="evenodd" />
     </svg>
   );
 }
 
 /* ================================================================
-   MONDAY.COM CASE STUDY — Editorial Design System
+   MONDAY.COM — "The Growth Experiment"
+   ──────────────────────────────────────────────────────────────
+   Unique personality:
+   · Key Insight on warm cream background (NOT dark band)
+   · Approach as full-width single-column detailed cards
+   · A/B Test section is the visual star (unique to this study)
+   · Feature Discovery as staggered full-bleed gallery
+   · Results as horizontal metric strip (NOT dark band)
    ================================================================ */
 export default function CaseStutyMondayConent() {
   return (
     <div className="bg-white">
       {/* ═══════════════════════════════════════════════════════
-          HERO / TITLE
+          HERO
           ═══════════════════════════════════════════════════════ */}
       <section className="pt-24 md:pt-32 lg:pt-40 pb-6 md:pb-8 px-6 md:px-12 lg:px-16">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <div className="mb-8">
-              <MondayLogo />
-            </div>
+            <div className="mb-8"><MondayLogo /></div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.12] mb-6"
-              style={{ color: 'var(--text-primary)' }}
-            >
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.12] mb-6" style={{ color: 'var(--text-primary)' }}>
               Optimizing monetization and plan selection at scale
             </h1>
           </Reveal>
 
           <Reveal delay={0.15}>
-            <p
-              className="text-base md:text-lg font-light italic max-w-2xl mx-auto"
-              style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-secondary)' }}
-            >
+            <p className="text-base md:text-lg font-light italic max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-secondary)' }}>
               Designing confidence at the moment of commitment
             </p>
           </Reveal>
 
-          {/* Metadata bar */}
           <Reveal delay={0.25}>
-            <div
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-10 pt-8 text-left"
-              style={{ borderTop: '1px solid var(--border-subtle)' }}
-            >
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.15em] mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                  Role
-                </p>
-                <p className="text-sm font-light" style={{ color: 'var(--text-primary)' }}>
-                  Senior Product Designer
-                </p>
-              </div>
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.15em] mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                  Team
-                </p>
-                <p className="text-sm font-light" style={{ color: 'var(--text-primary)' }}>
-                  Growth Squad (PM · Engineering · Data)
-                </p>
-              </div>
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.15em] mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                  Scope
-                </p>
-                <p className="text-sm font-light" style={{ color: 'var(--text-primary)' }}>
-                  Registration, upgrade, plan selection
-                </p>
-              </div>
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.15em] mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                  Impact
-                </p>
-                <p className="text-sm font-light" style={{ color: 'var(--text-primary)' }}>
-                  +7% registration-to-plan conversion
-                </p>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Hero image */}
-      <Reveal>
-        <div className="max-w-6xl mx-auto px-6 md:px-12 pb-4">
-          <img
-            src={imgBoardWithCactusAndPhone}
-            alt="monday.com board with phone"
-            className="w-full h-auto rounded-xl"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-      </Reveal>
-
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
-      <VerticalDivider />
-
-      {/* ═══════════════════════════════════════════════════════
-          THE PROBLEM — with icons
-          ═══════════════════════════════════════════════════════ */}
-      <section className="pb-12 md:pb-16 px-6 md:px-12 lg:px-16">
-        <div className="max-w-4xl mx-auto">
-          <Reveal>
-            <IconRow
-              icons={[
-                { icon: <LayoutGrid className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Tier Confusion' },
-                { icon: <Users className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Misalignment' },
-                { icon: <Zap className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Static Logic' },
-              ]}
-            />
-          </Reveal>
-
-          <Reveal>
-            <SectionHeading>The Problem</SectionHeading>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <h3
-              className="text-lg md:text-xl font-semibold text-center mb-6 max-w-2xl mx-auto leading-snug"
-              style={{ color: 'var(--text-primary)' }}
-            >
-              Millions of users registered, but conversion to paid plans could improve
-            </h3>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <p className="text-sm md:text-base font-light text-center mb-6 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Challenges:
-            </p>
-
-            <div className="flex flex-col gap-3.5 max-w-lg mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-10 pt-8 text-left" style={{ borderTop: '1px solid var(--border-subtle)' }}>
               {[
-                'Confusing tier comparison',
-                'Misaligned value communication',
-                'Static plan selection logic',
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full mt-[7px] flex-shrink-0"
-                    style={{ backgroundColor: 'var(--text-tertiary)' }}
-                  />
-                  <p className="text-sm md:text-base font-light" style={{ color: 'var(--text-primary)' }}>
-                    {item}
-                  </p>
+                { label: 'Role', value: 'Senior Product Designer' },
+                { label: 'Team', value: 'Growth Squad (PM · Engineering · Data)' },
+                { label: 'Scope', value: 'Registration, upgrade, plan selection' },
+                { label: 'Impact', value: '+7% registration-to-plan conversion' },
+              ].map((m) => (
+                <div key={m.label}>
+                  <p className="text-[11px] uppercase tracking-[0.15em] mb-2" style={{ color: 'var(--text-tertiary)' }}>{m.label}</p>
+                  <p className="text-sm font-light" style={{ color: 'var(--text-primary)' }}>{m.value}</p>
                 </div>
               ))}
             </div>
@@ -315,44 +122,75 @@ export default function CaseStutyMondayConent() {
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
+      <Reveal>
+        <div className="max-w-6xl mx-auto px-6 md:px-12 pb-4">
+          <img src={imgBoardWithCactusAndPhone} alt="monday.com board with phone" className="w-full h-auto rounded-xl" loading="eager" decoding="async" />
+        </div>
+      </Reveal>
+
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          KPI / IMPACT CARD
+          PROBLEM — Challenge pills + narrative
           ═══════════════════════════════════════════════════════ */}
-      <section className="pb-4 px-6 md:px-12 lg:px-16">
-        <Reveal>
-          <KpiCard label="Main Impact">
-            <p className="text-lg md:text-xl font-semibold leading-snug" style={{ color: 'var(--text-primary)' }}>
-              +7% registration-to-plan conversion
-              <br />
-              Improved plan clarity &amp; decision speed
-            </p>
-          </KpiCard>
-        </Reveal>
-      </section>
-
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
-      <VerticalDivider />
-
-      {/* ═══════════════════════════════════════════════════════
-          MY OWNERSHIP — with icons
-          ═══════════════════════════════════════════════════════ */}
-      <section className="pb-12 md:pb-16 px-6 md:px-12 lg:px-16">
-        <div className="max-w-4xl mx-auto">
+      <section className="pb-14 md:pb-18 px-6 md:px-12 lg:px-16">
+        <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <IconRow
-              icons={[
-                { icon: <BarChart3 className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Monetization' },
-                { icon: <Brain className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Recommendation' },
-                { icon: <FlaskConical className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Experiments' },
-              ]}
-            />
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <LayoutGrid className="w-5 h-5" strokeWidth={1.5} style={{ color: 'var(--text-tertiary)' }} />
+              <Users className="w-5 h-5" strokeWidth={1.5} style={{ color: 'var(--text-tertiary)' }} />
+              <Zap className="w-5 h-5" strokeWidth={1.5} style={{ color: 'var(--text-tertiary)' }} />
+              <span className="text-[10px] uppercase tracking-[0.2em] ml-2" style={{ color: 'var(--text-tertiary)' }}>Problem Space</span>
+            </div>
           </Reveal>
 
           <Reveal>
-            <SectionHeading>My Ownership</SectionHeading>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-8" style={{ color: 'var(--text-primary)' }}>
+              Millions of users registered, but conversion to paid plans could improve
+            </h2>
+          </Reveal>
+
+          {/* Challenge pills — horizontal, inline */}
+          <Reveal delay={0.1}>
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+              {['Confusing tier comparison', 'Misaligned value communication', 'Static plan selection logic'].map((item, i) => (
+                <span
+                  key={i}
+                  className="px-4 py-2 rounded-full text-xs md:text-sm font-light"
+                  style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)' }}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <VerticalDivider />
+
+      {/* ═══════════════════════════════════════════════════════
+          OWNERSHIP — Compact
+          ═══════════════════════════════════════════════════════ */}
+      <section className="pb-14 md:pb-18 px-6 md:px-12 lg:px-16">
+        <div className="max-w-4xl mx-auto">
+          <Reveal>
+            <div className="flex items-center justify-center gap-8 md:gap-12 mb-8">
+              {[
+                { icon: <BarChart3 className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.3} />, label: 'Monetization' },
+                { icon: <Brain className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.3} />, label: 'Recommendation' },
+                { icon: <FlaskConical className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.3} />, label: 'Experiments' },
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center gap-1.5">
+                  <div style={{ color: 'var(--text-primary)' }}>{item.icon}</div>
+                  <p className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>{item.label}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-10" style={{ color: 'var(--text-primary)' }}>My Ownership</h2>
           </Reveal>
 
           <Reveal delay={0.1}>
@@ -364,13 +202,8 @@ export default function CaseStutyMondayConent() {
                 'Worked in experiment-driven growth squad',
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full mt-[7px] flex-shrink-0"
-                    style={{ backgroundColor: 'var(--text-tertiary)' }}
-                  />
-                  <p className="text-sm md:text-base font-light" style={{ color: 'var(--text-primary)' }}>
-                    {item}
-                  </p>
+                  <span className="w-1.5 h-1.5 rounded-full mt-[7px] flex-shrink-0" style={{ backgroundColor: 'var(--text-tertiary)' }} />
+                  <p className="text-sm md:text-base font-light" style={{ color: 'var(--text-primary)' }}>{item}</p>
                 </div>
               ))}
             </div>
@@ -378,88 +211,57 @@ export default function CaseStutyMondayConent() {
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          KEY INSIGHT — Full-width dark accent band
+          KEY INSIGHT — Warm cream band
+          (NOT dark gray — unique to monday.com)
           ═══════════════════════════════════════════════════════ */}
-      <section
-        className="py-24 md:py-36 px-6 md:px-12"
-        style={{ backgroundColor: 'var(--color-gray-900)' }}
-      >
+      <section className="py-20 md:py-28 px-6 md:px-12" style={{ backgroundColor: '#faf7f2' }}>
         <div className="max-w-3xl mx-auto text-center">
           <Reveal>
-            <p className="text-[11px] uppercase tracking-[0.3em] mb-10" style={{ color: 'rgba(255,255,255,0.4)' }}>
-              Key Insight
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.3em] mb-8" style={{ color: 'var(--text-tertiary)' }}>Key Insight</p>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight text-white mb-3">
+            <p className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-3" style={{ color: 'var(--text-primary)' }}>
               Users didn&rsquo;t struggle with pricing.
             </p>
-            <p
-              className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight text-white italic"
-              style={{ fontFamily: 'var(--font-serif)' }}
-            >
+            <p className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight italic" style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>
               They struggled with choosing the right plan.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          THE APPROACH — numbered cards with icons
+          APPROACH — Full-width single-column cards
+          (NOT 2×2 grid — unique to monday.com)
           ═══════════════════════════════════════════════════════ */}
-      <section className="pb-12 md:pb-16 px-6 md:px-12 lg:px-16">
-        <div className="max-w-4xl mx-auto">
+      <section className="pb-14 md:pb-18 px-6 md:px-12 lg:px-16">
+        <div className="max-w-3xl mx-auto">
           <Reveal>
-            <SectionHeading>The Approach</SectionHeading>
+            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-14" style={{ color: 'var(--text-primary)' }}>The Approach</h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="flex flex-col gap-4">
             {[
-              {
-                num: '01',
-                text: 'Reframe plan comparison around use cases',
-                icon: <Layers className="w-7 h-7" strokeWidth={1.4} />,
-              },
-              {
-                num: '02',
-                text: 'Introduce personalized recommendations',
-                icon: <SlidersHorizontal className="w-7 h-7" strokeWidth={1.4} />,
-              },
-              {
-                num: '03',
-                text: 'Simplify upgrade flows',
-                icon: <Target className="w-7 h-7" strokeWidth={1.4} />,
-              },
-              {
-                num: '04',
-                text: 'Run A/B tests on value framing',
-                icon: <Repeat className="w-7 h-7" strokeWidth={1.4} />,
-              },
+              { num: '01', title: 'Reframe plan comparison', desc: 'Shift from feature lists to use-case-driven comparisons that match real team workflows.', icon: <Layers className="w-6 h-6" strokeWidth={1.4} /> },
+              { num: '02', title: 'Personalized recommendations', desc: 'Surface data-driven plan suggestions based on actual trial usage patterns.', icon: <SlidersHorizontal className="w-6 h-6" strokeWidth={1.4} /> },
+              { num: '03', title: 'Simplify upgrade flows', desc: 'Remove friction points that created hesitation at the commitment moment.', icon: <Target className="w-6 h-6" strokeWidth={1.4} /> },
+              { num: '04', title: 'A/B test value framing', desc: 'Run controlled experiments to validate that evidence-based messaging outperforms generic copy.', icon: <Repeat className="w-6 h-6" strokeWidth={1.4} /> },
             ].map((step, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <div
-                  className="p-6 md:p-8 rounded-xl h-full"
-                  style={{ backgroundColor: 'var(--surface-secondary)' }}
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <p
-                      className="text-2xl md:text-3xl font-semibold"
-                      style={{ color: 'var(--text-tertiary)' }}
-                    >
-                      {step.num}
-                    </p>
-                    <div style={{ color: 'var(--text-tertiary)' }}>{step.icon}</div>
+                <div className="flex items-start gap-5 p-5 md:p-6 rounded-xl" style={{ backgroundColor: 'var(--surface-secondary)' }}>
+                  <p className="text-2xl font-semibold flex-shrink-0 w-10" style={{ color: 'var(--text-tertiary)' }}>{step.num}</p>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div style={{ color: 'var(--text-tertiary)' }}>{step.icon}</div>
+                      <p className="text-sm md:text-base font-medium" style={{ color: 'var(--text-primary)' }}>{step.title}</p>
+                    </div>
+                    <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{step.desc}</p>
                   </div>
-                  <p className="text-sm md:text-base font-light leading-relaxed" style={{ color: 'var(--text-primary)' }}>
-                    {step.text}
-                  </p>
                 </div>
               </Reveal>
             ))}
@@ -467,52 +269,32 @@ export default function CaseStutyMondayConent() {
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          DESIGN VISUALS — Plan Selection & Comparison
+          PLAN SELECTION VISUALS
           ═══════════════════════════════════════════════════════ */}
       <section className="pb-4 px-6 md:px-12 lg:px-16">
         <div className="max-w-4xl mx-auto">
           <Reveal>
-            <SectionHeading>Visual Guidance for Plan Selection</SectionHeading>
+            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-4" style={{ color: 'var(--text-primary)' }}>Visual Guidance for Plan Selection</h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="text-sm md:text-base font-light text-center mb-10 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Users reached the pricing screen but struggled to confidently choose a tier.
-              We introduced visual guidance that connects features to real usage, turning
-              abstract comparisons into confident decisions.
+              Short explainer videos turn abstract feature lists into real usage stories, helping users quickly understand which plan fits them best.
             </p>
           </Reveal>
         </div>
 
-        {/* Full-width plan selection image */}
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <img
-              src={imgImage195}
-              alt="Plan selection interface"
-              className="w-full h-auto rounded-xl mb-5"
-              loading="lazy"
-              decoding="async"
-            />
+            <img src={imgImage195} alt="Plan selection interface" className="w-full h-auto rounded-xl mb-5" loading="lazy" decoding="async" />
           </Reveal>
-
-          {/* Plan comparison — cropped view */}
           <Reveal>
             <div className="overflow-hidden rounded-xl mb-5">
-              <img
-                src={imgImage196}
-                alt="Plan comparison flow"
-                className="w-full h-auto object-cover scale-[1.25]"
-                loading="lazy"
-                decoding="async"
-              />
+              <img src={imgImage196} alt="Plan comparison flow" className="w-full h-auto object-cover scale-[1.25]" loading="lazy" decoding="async" />
             </div>
           </Reveal>
-
-          {/* Why Standard / Why Pro videos */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <Reveal delay={0.08}>
               <div className="rounded-xl overflow-hidden" style={{ backgroundColor: 'var(--surface-secondary)' }}>
@@ -528,189 +310,125 @@ export default function CaseStutyMondayConent() {
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          A/B TEST — Evidence-based approach
+          A/B TEST — The star of this study (unique)
           ═══════════════════════════════════════════════════════ */}
       <section className="pb-8 md:pb-12 px-6 md:px-12 lg:px-16">
         <div className="max-w-4xl mx-auto">
           <Reveal>
-            <IconRow
-              icons={[
-                { icon: <Eye className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Variant A' },
-                { icon: <Lightbulb className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Variant B' },
-                { icon: <MessageSquare className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Validation' },
-              ]}
-            />
+            <div className="flex items-center justify-center gap-8 md:gap-12 mb-8">
+              {[
+                { icon: <Eye className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.3} />, label: 'Variant A' },
+                { icon: <Lightbulb className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.3} />, label: 'Variant B' },
+                { icon: <MessageSquare className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.3} />, label: 'Validation' },
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center gap-1.5">
+                  <div style={{ color: 'var(--text-primary)' }}>{item.icon}</div>
+                  <p className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>{item.label}</p>
+                </div>
+              ))}
+            </div>
           </Reveal>
 
           <Reveal>
-            <SectionHeading>A/B Test: Pro Recommendation</SectionHeading>
+            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-4" style={{ color: 'var(--text-primary)' }}>A/B Test: Pro Recommendation</h2>
           </Reveal>
-
-          <Reveal delay={0.1}>
+          <Reveal delay={0.08}>
             <p className="text-sm md:text-base font-light text-center mb-10 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              We tested a generic recommendation vs. a usage-based personalized recommendation
-              to measure impact on Pro conversion. The usage-driven experience increased
-              conversion from 4.0% to 5.4%, delivering a 35% relative uplift.
+              Usage-driven experience increased conversion from 4.0% to 5.4%, delivering a 35% relative uplift.
             </p>
           </Reveal>
 
-          {/* Variant comparison */}
+          {/* Variant cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
-            <Reveal delay={0.08}>
-              <div className="p-6 rounded-xl" style={{ backgroundColor: 'var(--surface-secondary)' }}>
-                <p className="text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Variant A</p>
-                <p className="text-xs font-light" style={{ color: 'var(--text-secondary)' }}>
-                  Recommendation + Feature explanation + Why banner
-                  <br />
-                  &ldquo;Trust us — Pro is better for you.&rdquo;
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <div className="p-6 rounded-xl" style={{ backgroundColor: 'var(--surface-secondary)' }}>
-                <p className="text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Variant B</p>
-                <p className="text-xs font-light" style={{ color: 'var(--text-secondary)' }}>
-                  Recommendation + Usage proof + Recommendation
-                  <br />
-                  &ldquo;Here&rsquo;s evidence — Pro fits how you work.&rdquo;
-                </p>
-              </div>
-            </Reveal>
+            {[
+              { label: 'Variant A', model: '"Trust us — Pro is better for you."', pattern: 'Recommendation + Feature explanation + Why banner' },
+              { label: 'Variant B', model: '"Here\'s evidence — Pro fits how you work."', pattern: 'Recommendation + Usage proof + Recommendation' },
+            ].map((v, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div className="p-6 rounded-xl" style={{ backgroundColor: 'var(--surface-secondary)' }}>
+                  <p className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{v.label}</p>
+                  <p className="text-xs font-light mb-2" style={{ color: 'var(--text-secondary)' }}>{v.pattern}</p>
+                  <p className="text-xs font-light italic" style={{ color: 'var(--text-tertiary)' }}>{v.model}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
 
-          {/* Variant images side by side */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
-            <Reveal delay={0.08}>
-              <img src={imgImage190} alt="A/B test variant A" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" />
-            </Reveal>
-            <Reveal delay={0.16}>
-              <img src={imgImage189} alt="A/B test variant B" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" />
-            </Reveal>
+            <Reveal delay={0.08}><img src={imgImage190} alt="Variant A" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" /></Reveal>
+            <Reveal delay={0.16}><img src={imgImage189} alt="Variant B" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" /></Reveal>
           </div>
 
-          {/* Chart */}
-          <Reveal>
-            <img
-              src={imgAbChart}
-              alt="A/B test conversion trend chart"
-              className="w-full h-auto rounded-xl mb-5"
-              loading="lazy"
-              decoding="async"
-            />
-          </Reveal>
-
-          {/* Step 4 result */}
+          <Reveal><img src={imgAbChart} alt="Conversion trend chart" className="w-full h-auto rounded-xl mb-5" loading="lazy" decoding="async" /></Reveal>
           <Reveal>
             <div className="rounded-xl overflow-hidden p-5 md:p-8" style={{ backgroundColor: 'var(--color-gray-600, #555)' }}>
-              <img
-                src={imgStep4}
-                alt="A/B test result"
-                className="w-full h-auto rounded-lg"
-                loading="lazy"
-                decoding="async"
-              />
+              <img src={imgStep4} alt="A/B test result" className="w-full h-auto rounded-lg" loading="lazy" decoding="async" />
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          FEATURE DISCOVERY — Full-bleed images
+          FEATURE DISCOVERY — Staggered full-bleed
           ═══════════════════════════════════════════════════════ */}
       <section className="pb-4 px-6 md:px-12 lg:px-16">
         <div className="max-w-4xl mx-auto">
           <Reveal>
-            <SectionHeading>Promoting Discovery Through Value</SectionHeading>
+            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-4" style={{ color: 'var(--text-primary)' }}>Promoting Discovery Through Value</h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="text-sm md:text-base font-light text-center mb-10 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Instead of pushing upgrades aggressively, feature promotion was designed to feel
-              contextual and helpful — surfacing locked capabilities where users naturally need
-              them, making the upgrade feel like a natural next step.
+              Feature promotion was designed to feel contextual — surfacing locked capabilities where users naturally need them.
             </p>
           </Reveal>
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-3">
-          {[imgDiscovery212, imgDiscovery213, imgPromoted214, imgPromoted215].map((src, i) => (
-            <Reveal key={i} delay={i * 0.06}>
-              <img
-                src={src}
-                alt={`Feature discovery ${i + 1}`}
-                className="w-full h-auto rounded-xl"
-                loading="lazy"
-                decoding="async"
-              />
-            </Reveal>
-          ))}
+        {/* Staggered: 2 full-width, 2 side-by-side */}
+        <div className="max-w-6xl mx-auto space-y-5">
+          <Reveal>
+            <img src={imgDiscovery212} alt="Feature discovery" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" />
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <Reveal delay={0.08}><img src={imgDiscovery213} alt="Discovery detail" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" /></Reveal>
+            <Reveal delay={0.12}><img src={imgPromoted214} alt="Promoted features" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" /></Reveal>
+          </div>
+          <Reveal>
+            <img src={imgPromoted215} alt="Promoted features detail" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" />
+          </Reveal>
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          RESULTS — Full-width dark accent band
+          RESULTS — Horizontal metric strip on white
+          (NOT a dark band — unique to monday.com)
           ═══════════════════════════════════════════════════════ */}
-      <section
-        className="py-24 md:py-36 px-6 md:px-12 lg:px-16"
-        style={{ backgroundColor: 'var(--color-gray-900)' }}
-      >
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-16 md:py-24 px-6 md:px-12 lg:px-16">
+        <div className="max-w-4xl mx-auto">
           <Reveal>
-            <p className="text-[11px] uppercase tracking-[0.3em] mb-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
-              Results
-            </p>
-            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-16">
-              Measurable impact on conversion at scale
-            </h2>
+            <p className="text-[11px] uppercase tracking-[0.3em] mb-4 text-center" style={{ color: 'var(--text-tertiary)' }}>Results</p>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 md:gap-16 text-center">
-            <Reveal delay={0.08}>
-              <div>
-                <p className="text-5xl md:text-6xl lg:text-7xl font-semibold text-white mb-3">
-                  +7%
-                </p>
-                <p className="text-sm font-light" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                  increase in registration-to-plan conversion
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <div>
-                <p
-                  className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-3"
-                  style={{ color: 'rgba(255,255,255,0.7)' }}
-                >
-                  &uarr;
-                </p>
-                <p className="text-sm font-light" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                  Improved plan clarity and decision speed
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.24}>
-              <div>
-                <p
-                  className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-3"
-                  style={{ color: 'rgba(255,255,255,0.7)' }}
-                >
-                  &darr;
-                </p>
-                <p className="text-sm font-light" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                  More consistent upgrade behavior
-                </p>
-              </div>
-            </Reveal>
-          </div>
+          <Reveal delay={0.08}>
+            <div className="flex flex-col md:flex-row items-stretch divide-y md:divide-y-0 md:divide-x" style={{ borderColor: 'var(--border-subtle)' }}>
+              {[
+                { metric: '+7%', desc: 'registration-to-plan conversion' },
+                { metric: '35%', desc: 'relative uplift in Pro upgrades' },
+                { metric: '\u2191', desc: 'plan clarity and decision speed' },
+              ].map((item, i) => (
+                <div key={i} className="flex-1 py-6 md:py-0 md:px-8 first:md:pl-0 last:md:pr-0 text-center">
+                  <p className="text-3xl md:text-4xl font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{item.metric}</p>
+                  <p className="text-xs md:text-sm font-light" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -718,13 +436,7 @@ export default function CaseStutyMondayConent() {
           CLOSING IMAGE
           ═══════════════════════════════════════════════════════ */}
       <div className="relative w-full overflow-hidden">
-        <img
-          src={imgImage193}
-          alt="monday.com — good monetization removes fear"
-          loading="lazy"
-          decoding="async"
-          className="w-full h-auto object-cover"
-        />
+        <img src={imgImage193} alt="monday.com — removing the fear of saying yes" loading="lazy" decoding="async" className="w-full h-auto object-cover" />
         <div className="absolute inset-0 flex items-center">
           <div className="ml-auto mr-4 md:mr-12 lg:mr-20 max-w-[42%] md:max-w-sm lg:max-w-md">
             <p className="text-[10px] leading-3 md:text-base md:leading-7 mb-1 md:mb-2 font-light tracking-wide" style={{ color: 'var(--text-primary)' }}>
@@ -737,30 +449,23 @@ export default function CaseStutyMondayConent() {
         </div>
       </div>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          NEXT CASE STUDY NAVIGATION
+          NAVIGATION
           ═══════════════════════════════════════════════════════ */}
       <section className="pb-12 md:pb-16 px-6 md:px-12 lg:px-16">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="text-left">
-            <p className="text-[11px] uppercase tracking-[0.15em] mb-1" style={{ color: 'var(--text-tertiary)' }}>
-              Previous Case Study
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.15em] mb-1" style={{ color: 'var(--text-tertiary)' }}>Previous Case Study</p>
             <p className="text-base md:text-lg font-medium flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-              <ArrowRight className="w-4 h-4 rotate-180" />
-              FundGuard
+              <ArrowRight className="w-4 h-4 rotate-180" /> FundGuard
             </p>
           </div>
           <div className="text-right">
-            <p className="text-[11px] uppercase tracking-[0.15em] mb-1" style={{ color: 'var(--text-tertiary)' }}>
-              Next Case Study
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.15em] mb-1" style={{ color: 'var(--text-tertiary)' }}>Next Case Study</p>
             <p className="text-base md:text-lg font-medium flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-              Bit
-              <ArrowRight className="w-4 h-4" />
+              Bit <ArrowRight className="w-4 h-4" />
             </p>
           </div>
         </div>

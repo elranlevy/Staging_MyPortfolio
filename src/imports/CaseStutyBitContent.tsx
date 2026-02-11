@@ -8,11 +8,9 @@ import {
   CreditCard,
   Rocket,
   MessageCircle,
-  Users,
-  Zap,
-  TrendingUp,
   RefreshCw,
   ScanLine,
+  Users,
   MousePointerClick,
 } from 'lucide-react';
 
@@ -34,30 +32,16 @@ import seamlessMotion4 from '@/assets/seamless-motion-4.mp4';
 
 import { LazyVideo } from '@/app/components/case-study/CaseStudyPrimitives';
 
-/* ── Scroll-triggered animation ──────────────────────────────── */
-function Reveal({
-  children,
-  className = '',
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
+/* ── Scroll-triggered reveal ─────────────────────────────────── */
+function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.7, delay, ease: 'easeOut' }}
-    >
+    <motion.div className={className} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.7, delay, ease: 'easeOut' }}>
       {children}
     </motion.div>
   );
 }
 
-/* ── Centered vertical line divider ──────────────────────────── */
+/* ── Vertical divider ────────────────────────────────────────── */
 function VerticalDivider() {
   return (
     <div className="flex justify-center py-8 md:py-10">
@@ -66,259 +50,131 @@ function VerticalDivider() {
   );
 }
 
-/* ── Bold centered section heading ───────────────────────────── */
-function SectionHeading({ children }: { children: ReactNode }) {
-  return (
-    <h2
-      className="text-2xl md:text-3xl lg:text-[34px] font-semibold text-center mb-10 md:mb-14"
-      style={{ color: 'var(--text-primary)' }}
-    >
-      {children}
-    </h2>
-  );
-}
-
-/* ── Icon row ────────────────────────────────────────────────── */
-function IconRow({
-  icons,
-}: {
-  icons: { icon: ReactNode; label?: string }[];
-}) {
-  return (
-    <div className="flex items-center justify-center gap-10 md:gap-16 mb-8 md:mb-10">
-      {icons.map((item, i) => (
-        <div key={i} className="flex flex-col items-center gap-2">
-          <div style={{ color: 'var(--text-primary)' }}>{item.icon}</div>
-          {item.label && (
-            <p className="text-[10px] uppercase tracking-wider text-center" style={{ color: 'var(--text-tertiary)' }}>
-              {item.label}
-            </p>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/* ── KPI / Impact callout card ───────────────────────────────── */
-function KpiCard({
-  label,
-  children,
-}: {
-  label: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="max-w-xl mx-auto">
-      <div
-        className="relative overflow-hidden rounded-2xl px-8 py-10 md:px-12 md:py-12 text-center"
-        style={{ backgroundColor: '#e8eeff' }}
-      >
-        <div className="absolute -left-4 -top-4 opacity-[0.08]">
-          <TrendingUp className="w-32 h-32" strokeWidth={1.2} style={{ color: 'var(--brand)' }} />
-        </div>
-        <p
-          className="text-[11px] uppercase tracking-[0.25em] mb-4 relative"
-          style={{ color: 'var(--text-tertiary)' }}
-        >
-          {label}
-        </p>
-        <div className="relative">{children}</div>
-      </div>
-    </div>
-  );
-}
-
 /* ================================================================
-   BIT CASE STUDY
+   BIT — "The Visual-Led Mobile"
+   ──────────────────────────────────────────────────────────────
+   Unique personality:
+   · Bold single-statement problem with inline challenge pills
+   · Key Insight on dark gradient (navy→slate, NOT flat gray)
+   · Approach as horizontal single row (NOT 2×2 grid)
+   · Seamless Motion section elevated as major visual moment
+   · Results as large decorative numbers on white (NOT dark band)
    ================================================================ */
 export default function CaseStutyBitContent() {
   return (
     <div className="bg-white">
       {/* ═══════════════════════════════════════════════════════
-          HERO / TITLE
+          HERO
           ═══════════════════════════════════════════════════════ */}
       <section className="pt-24 md:pt-32 lg:pt-40 pb-6 md:pb-8 px-6 md:px-12 lg:px-16">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <p
-              className="text-xs uppercase tracking-[0.3em] mb-6"
-              style={{ color: 'var(--text-tertiary)' }}
-            >
-              Bit
-            </p>
+            <p className="text-xs uppercase tracking-[0.3em] mb-6" style={{ color: 'var(--text-tertiary)' }}>Bit</p>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.12] mb-6"
-              style={{ color: 'var(--text-primary)' }}
-            >
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.12] mb-6" style={{ color: 'var(--text-primary)' }}>
               Designing consumer fintech at national scale
             </h1>
           </Reveal>
 
           <Reveal delay={0.15}>
-            <p
-              className="text-base md:text-lg font-light italic max-w-2xl mx-auto"
-              style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-secondary)' }}
-            >
+            <p className="text-base md:text-lg font-light italic max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-secondary)' }}>
               When speed and trust are non-negotiable
             </p>
           </Reveal>
 
-          {/* Metadata bar */}
           <Reveal delay={0.25}>
-            <div
-              className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-10 pt-8 text-left"
-              style={{ borderTop: '1px solid var(--border-subtle)' }}
-            >
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.15em] mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                  Role
-                </p>
-                <p className="text-sm font-light" style={{ color: 'var(--text-primary)' }}>
-                  Senior Product Designer
-                </p>
-              </div>
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.15em] mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                  Team
-                </p>
-                <p className="text-sm font-light" style={{ color: 'var(--text-primary)' }}>
-                  PM · Engineering · Growth · Marketing
-                </p>
-              </div>
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.15em] mb-2" style={{ color: 'var(--text-tertiary)' }}>
-                  Scope
-                </p>
-                <p className="text-sm font-light" style={{ color: 'var(--text-primary)' }}>
-                  Core payment flows · Activation · Engagement
-                </p>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-10 pt-8 text-left" style={{ borderTop: '1px solid var(--border-subtle)' }}>
+              {[
+                { label: 'Role', value: 'Senior Product Designer' },
+                { label: 'Team', value: 'PM · Engineering · Growth · Marketing' },
+                { label: 'Scope', value: 'Core payment flows · Activation · Engagement' },
+              ].map((m) => (
+                <div key={m.label}>
+                  <p className="text-[11px] uppercase tracking-[0.15em] mb-2" style={{ color: 'var(--text-tertiary)' }}>{m.label}</p>
+                  <p className="text-sm font-light" style={{ color: 'var(--text-primary)' }}>{m.value}</p>
+                </div>
+              ))}
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Hero image */}
       <Reveal>
         <div className="max-w-6xl mx-auto px-6 md:px-12 pb-4">
-          <img
-            src={imgScreenShot20200904At203224}
-            alt="Bit app screens"
-            className="w-full h-auto rounded-xl"
-            loading="eager"
-            decoding="async"
-          />
+          <img src={imgScreenShot20200904At203224} alt="Bit app screens" className="w-full h-auto rounded-xl" loading="eager" decoding="async" />
         </div>
       </Reveal>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          THE PROBLEM — with icons
+          PROBLEM — Bold single statement + challenge pills
+          (NOT icon-row + heading + bullet list — unique to Bit)
           ═══════════════════════════════════════════════════════ */}
-      <section className="pb-12 md:pb-16 px-6 md:px-12 lg:px-16">
-        <div className="max-w-4xl mx-auto">
+      <section className="pb-14 md:pb-18 px-6 md:px-12 lg:px-16">
+        <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <IconRow
-              icons={[
-                { icon: <Banknote className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Sensitivity' },
-                { icon: <Timer className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Friction' },
-                { icon: <Swords className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Competition' },
-              ]}
-            />
-          </Reveal>
-
-          <Reveal>
-            <SectionHeading>The Problem</SectionHeading>
+            <p className="text-[11px] uppercase tracking-[0.3em] mb-6" style={{ color: 'var(--text-tertiary)' }}>The Problem</p>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h3
-              className="text-lg md:text-xl font-semibold text-center mb-6 max-w-2xl mx-auto leading-snug"
-              style={{ color: 'var(--text-primary)' }}
-            >
-              Bit operates at massive consumer scale
-            </h3>
+            <h2 className="text-3xl md:text-4xl lg:text-[42px] font-semibold leading-tight mb-8" style={{ color: 'var(--text-primary)' }}>
+              Bit operates at massive consumer scale.
+              <br />
+              <span className="font-light" style={{ color: 'var(--text-secondary)' }}>
+                Small UX issues directly impacted usage and retention.
+              </span>
+            </h2>
           </Reveal>
 
+          {/* Inline challenge pills */}
           <Reveal delay={0.15}>
-            <p className="text-sm md:text-base font-light text-center mb-6 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Challenges:
-            </p>
-
-            <div className="flex flex-col gap-3.5 max-w-lg mx-auto">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               {[
-                'High transaction sensitivity',
-                'Low tolerance for friction',
-                'Strong competition in digital payments',
+                { icon: <Banknote className="w-4 h-4" strokeWidth={1.5} />, text: 'High transaction sensitivity' },
+                { icon: <Timer className="w-4 h-4" strokeWidth={1.5} />, text: 'Low tolerance for friction' },
+                { icon: <Swords className="w-4 h-4" strokeWidth={1.5} />, text: 'Strong competition' },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full mt-[7px] flex-shrink-0"
-                    style={{ backgroundColor: 'var(--text-tertiary)' }}
-                  />
-                  <p className="text-sm md:text-base font-light" style={{ color: 'var(--text-primary)' }}>
-                    {item}
-                  </p>
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs md:text-sm font-light"
+                  style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)' }}
+                >
+                  <span style={{ color: 'var(--text-tertiary)' }}>{item.icon}</span>
+                  {item.text}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <VerticalDivider />
+
+      {/* ═══════════════════════════════════════════════════════
+          OWNERSHIP
+          ═══════════════════════════════════════════════════════ */}
+      <section className="pb-14 md:pb-18 px-6 md:px-12 lg:px-16">
+        <div className="max-w-4xl mx-auto">
+          <Reveal>
+            <div className="flex items-center justify-center gap-8 md:gap-12 mb-8">
+              {[
+                { icon: <CreditCard className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.3} />, label: 'Payments' },
+                { icon: <Rocket className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.3} />, label: 'Activation' },
+                { icon: <MessageCircle className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.3} />, label: 'Clarity' },
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center gap-1.5">
+                  <div style={{ color: 'var(--text-primary)' }}>{item.icon}</div>
+                  <p className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>{item.label}</p>
                 </div>
               ))}
             </div>
           </Reveal>
 
-          <Reveal delay={0.2}>
-            <p
-              className="text-sm md:text-base font-light italic text-center mt-8 max-w-xl mx-auto"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              Small UX issues directly impacted usage and retention.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
-      <VerticalDivider />
-
-      {/* ═══════════════════════════════════════════════════════
-          KPI / IMPACT CARD
-          ═══════════════════════════════════════════════════════ */}
-      <section className="pb-4 px-6 md:px-12 lg:px-16">
-        <Reveal>
-          <KpiCard label="Scale">
-            <p className="text-lg md:text-xl font-semibold leading-snug" style={{ color: 'var(--text-primary)' }}>
-              2M+ users · National P2P leader
-              <br />
-              High-frequency daily transactions
-            </p>
-          </KpiCard>
-        </Reveal>
-      </section>
-
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
-      <VerticalDivider />
-
-      {/* ═══════════════════════════════════════════════════════
-          MY OWNERSHIP
-          ═══════════════════════════════════════════════════════ */}
-      <section className="pb-12 md:pb-16 px-6 md:px-12 lg:px-16">
-        <div className="max-w-4xl mx-auto">
           <Reveal>
-            <IconRow
-              icons={[
-                { icon: <CreditCard className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Payments' },
-                { icon: <Rocket className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Activation' },
-                { icon: <MessageCircle className="w-10 h-10 md:w-12 md:h-12" strokeWidth={1.3} />, label: 'Clarity' },
-              ]}
-            />
-          </Reveal>
-
-          <Reveal>
-            <SectionHeading>My Ownership</SectionHeading>
+            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-10" style={{ color: 'var(--text-primary)' }}>My Ownership</h2>
           </Reveal>
 
           <Reveal delay={0.1}>
@@ -331,13 +187,8 @@ export default function CaseStutyBitContent() {
                 'Worked closely with Engineering on performance and edge cases',
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full mt-[7px] flex-shrink-0"
-                    style={{ backgroundColor: 'var(--text-tertiary)' }}
-                  />
-                  <p className="text-sm md:text-base font-light" style={{ color: 'var(--text-primary)' }}>
-                    {item}
-                  </p>
+                  <span className="w-1.5 h-1.5 rounded-full mt-[7px] flex-shrink-0" style={{ backgroundColor: 'var(--text-tertiary)' }} />
+                  <p className="text-sm md:text-base font-light" style={{ color: 'var(--text-primary)' }}>{item}</p>
                 </div>
               ))}
             </div>
@@ -345,93 +196,60 @@ export default function CaseStutyBitContent() {
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          KEY INSIGHT — Dramatic full-width accent band
+          KEY INSIGHT — Dark gradient band
+          (navy→slate, NOT flat gray — unique to Bit)
           ═══════════════════════════════════════════════════════ */}
       <section
         className="py-24 md:py-36 px-6 md:px-12"
-        style={{ backgroundColor: 'var(--color-gray-900)' }}
+        style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)' }}
       >
         <div className="max-w-3xl mx-auto text-center">
           <Reveal>
-            <p className="text-[11px] uppercase tracking-[0.3em] mb-10" style={{ color: 'rgba(255,255,255,0.4)' }}>
-              Key Insight
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.3em] mb-10" style={{ color: 'rgba(255,255,255,0.35)' }}>Key Insight</p>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight text-white mb-3">
               In payments, speed builds trust.
             </p>
-            <p
-              className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight text-white italic"
-              style={{ fontFamily: 'var(--font-serif)' }}
-            >
+            <p className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight italic" style={{ fontFamily: 'var(--font-serif)', color: 'rgba(255,255,255,0.8)' }}>
               Uncertainty destroys it.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-10 text-sm md:text-base font-light max-w-lg mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
+            <p className="mt-10 text-sm md:text-base font-light max-w-lg mx-auto" style={{ color: 'rgba(255,255,255,0.45)' }}>
               Delays, unclear states, or uncertainty reduce repeat usage.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          THE APPROACH — numbered cards with icons
+          APPROACH — Horizontal single row
+          (NOT 2×2 grid — unique to Bit)
           ═══════════════════════════════════════════════════════ */}
-      <section className="pb-12 md:pb-16 px-6 md:px-12 lg:px-16">
-        <div className="max-w-4xl mx-auto">
+      <section className="pb-14 md:pb-18 px-6 md:px-12 lg:px-16">
+        <div className="max-w-5xl mx-auto">
           <Reveal>
-            <SectionHeading>The Approach</SectionHeading>
+            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-12" style={{ color: 'var(--text-primary)' }}>The Approach</h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              {
-                num: '01',
-                text: 'Reduce cognitive load in transfer flows',
-                icon: <RefreshCw className="w-7 h-7" strokeWidth={1.4} />,
-              },
-              {
-                num: '02',
-                text: 'Clarify transaction states (pending, sent, received)',
-                icon: <ScanLine className="w-7 h-7" strokeWidth={1.4} />,
-              },
-              {
-                num: '03',
-                text: 'Improve first-use onboarding',
-                icon: <Users className="w-7 h-7" strokeWidth={1.4} />,
-              },
-              {
-                num: '04',
-                text: 'Optimize micro-interactions for speed and confidence',
-                icon: <MousePointerClick className="w-7 h-7" strokeWidth={1.4} />,
-              },
+              { num: '01', text: 'Reduce cognitive load in transfer flows', icon: <RefreshCw className="w-6 h-6" strokeWidth={1.4} /> },
+              { num: '02', text: 'Clarify transaction states', icon: <ScanLine className="w-6 h-6" strokeWidth={1.4} /> },
+              { num: '03', text: 'Improve first-use onboarding', icon: <Users className="w-6 h-6" strokeWidth={1.4} /> },
+              { num: '04', text: 'Optimize micro-interactions', icon: <MousePointerClick className="w-6 h-6" strokeWidth={1.4} /> },
             ].map((step, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <div
-                  className="p-6 md:p-8 rounded-xl h-full"
-                  style={{ backgroundColor: 'var(--surface-secondary)' }}
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <p
-                      className="text-2xl md:text-3xl font-semibold"
-                      style={{ color: 'var(--text-tertiary)' }}
-                    >
-                      {step.num}
-                    </p>
-                    <div style={{ color: 'var(--text-tertiary)' }}>{step.icon}</div>
-                  </div>
-                  <p className="text-sm md:text-base font-light leading-relaxed" style={{ color: 'var(--text-primary)' }}>
-                    {step.text}
-                  </p>
+                <div className="p-5 md:p-6 rounded-xl text-center h-full flex flex-col items-center" style={{ backgroundColor: 'var(--surface-secondary)' }}>
+                  <p className="text-xl md:text-2xl font-semibold mb-3" style={{ color: 'var(--text-tertiary)' }}>{step.num}</p>
+                  <div className="mb-3" style={{ color: 'var(--text-tertiary)' }}>{step.icon}</div>
+                  <p className="text-xs md:text-sm font-light leading-relaxed" style={{ color: 'var(--text-primary)' }}>{step.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -439,82 +257,49 @@ export default function CaseStutyBitContent() {
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          DESIGN VISUALS — App Screens & Flows
+          DESIGN VISUALS — App Screens
           ═══════════════════════════════════════════════════════ */}
       <section className="pb-8 md:pb-12 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <img
-              src={imgImage172}
-              alt="Bit transfer flow"
-              className="w-full h-auto rounded-xl mb-5"
-              loading="lazy"
-              decoding="async"
-            />
+            <img src={imgImage172} alt="Bit transfer flow" className="w-full h-auto rounded-xl mb-5" loading="lazy" decoding="async" />
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <Reveal delay={0.08}>
-              <img
-                src={imgImage173}
-                alt="Bit app flow overview"
-                className="w-full h-auto rounded-xl"
-                loading="lazy"
-                decoding="async"
-              />
-            </Reveal>
-            <Reveal delay={0.16}>
-              <img
-                src={imgImage174}
-                alt="Bit app detailed screens"
-                className="w-full h-auto rounded-xl"
-                loading="lazy"
-                decoding="async"
-              />
-            </Reveal>
+            <Reveal delay={0.08}><img src={imgImage173} alt="Bit flow overview" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" /></Reveal>
+            <Reveal delay={0.16}><img src={imgImage174} alt="Bit detailed screens" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" /></Reveal>
           </div>
-
-          {/* Phone mockups */}
           <Reveal className="mt-5">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[imgBitmap1, imgBitmap2, imgBitmap3, imgBitmap4].map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt={`Bit app screen ${i + 1}`}
-                  className="w-full h-auto rounded-xl"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <img key={i} src={src} alt={`Bit app screen ${i + 1}`} className="w-full h-auto rounded-xl" loading="lazy" decoding="async" />
               ))}
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          SEAMLESS MOTION — Videos
+          SEAMLESS MOTION — Elevated visual moment (unique to Bit)
           ═══════════════════════════════════════════════════════ */}
-      <section className="pb-8 md:pb-12 px-6 md:px-12">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-16 md:py-20 px-6 md:px-12" style={{ backgroundColor: 'var(--surface-secondary)' }}>
+        <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <SectionHeading>Seamless Motion</SectionHeading>
-          </Reveal>
-          <Reveal>
-            <p className="text-sm md:text-base font-light text-center mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-[11px] uppercase tracking-[0.3em] mb-4" style={{ color: 'var(--text-tertiary)' }}>Micro-Interactions</p>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>Seamless Motion</h2>
+            <p className="text-sm md:text-base font-light mb-12 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               Subtle animated transitions guide users through the payment flow, creating a smooth, intuitive experience from start to finish.
             </p>
           </Reveal>
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
             {[seamlessMotion1, seamlessMotion2, seamlessMotion3, seamlessMotion4].map((src, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <div className="aspect-[223/493] overflow-hidden rounded-xl">
+                <div className="aspect-[223/493] overflow-hidden rounded-2xl shadow-lg">
                   <LazyVideo src={src} className="w-full h-full object-cover" />
                 </div>
               </Reveal>
@@ -523,66 +308,34 @@ export default function CaseStutyBitContent() {
         </div>
       </section>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          RESULTS — Full-width dark accent band
+          RESULTS — Large decorative numbers on white
+          (NOT a dark band — unique to Bit)
           ═══════════════════════════════════════════════════════ */}
-      <section
-        className="py-24 md:py-36 px-6 md:px-12 lg:px-16"
-        style={{ backgroundColor: 'var(--color-gray-900)' }}
-      >
+      <section className="py-16 md:py-24 px-6 md:px-12 lg:px-16">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <p className="text-[11px] uppercase tracking-[0.3em] mb-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
-              Results
-            </p>
-            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-16">
-              Impact at consumer scale
-            </h2>
+            <p className="text-[11px] uppercase tracking-[0.3em] mb-4" style={{ color: 'var(--text-tertiary)' }}>Results</p>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-14" style={{ color: 'var(--text-primary)' }}>Impact at consumer scale</h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 md:gap-16 text-center">
-            <Reveal delay={0.08}>
-              <div>
-                <p
-                  className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-3"
-                  style={{ color: 'rgba(255,255,255,0.7)' }}
-                >
-                  &uarr;
-                </p>
-                <p className="text-sm font-light" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                  Improved activation and repeat usage
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <div>
-                <p
-                  className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-3"
-                  style={{ color: 'rgba(255,255,255,0.7)' }}
-                >
-                  &darr;
-                </p>
-                <p className="text-sm font-light" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                  Reduced confusion around transaction status
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.24}>
-              <div>
-                <p
-                  className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-3"
-                  style={{ color: 'rgba(255,255,255,0.7)' }}
-                >
-                  &#x2713;
-                </p>
-                <p className="text-sm font-light" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                  Increased clarity in high-frequency payment actions
-                </p>
-              </div>
-            </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
+            {[
+              { symbol: '\u2191', desc: 'Improved activation and repeat usage' },
+              { symbol: '\u2193', desc: 'Reduced confusion around transaction status' },
+              { symbol: '\u2713', desc: 'Increased clarity in high-frequency payment actions' },
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div>
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-light mb-3" style={{ color: 'var(--text-primary)', opacity: 0.25 }}>
+                    {item.symbol}
+                  </p>
+                  <p className="text-sm font-light" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -591,13 +344,7 @@ export default function CaseStutyBitContent() {
           CLOSING IMAGE
           ═══════════════════════════════════════════════════════ */}
       <div className="relative w-full overflow-hidden">
-        <img
-          src={imgImage192}
-          alt="Bit — the best financial UX feels invisible"
-          loading="lazy"
-          decoding="async"
-          className="w-full h-auto object-cover"
-        />
+        <img src={imgImage192} alt="Bit — the best financial UX feels invisible" loading="lazy" decoding="async" className="w-full h-auto object-cover" />
         <div className="absolute inset-0 flex items-center">
           <div className="ml-auto mr-4 md:mr-12 lg:mr-20 max-w-[40%] md:max-w-sm lg:max-w-md">
             <p className="text-[10px] leading-3 md:text-base md:leading-7 mb-1 md:mb-2 text-white font-light tracking-wide">
@@ -610,30 +357,23 @@ export default function CaseStutyBitContent() {
         </div>
       </div>
 
-      {/* ─── DIVIDER ─────────────────────────────────────────── */}
       <VerticalDivider />
 
       {/* ═══════════════════════════════════════════════════════
-          NEXT CASE STUDY NAVIGATION
+          NAVIGATION
           ═══════════════════════════════════════════════════════ */}
       <section className="pb-12 md:pb-16 px-6 md:px-12 lg:px-16">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="text-left">
-            <p className="text-[11px] uppercase tracking-[0.15em] mb-1" style={{ color: 'var(--text-tertiary)' }}>
-              Previous Case Study
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.15em] mb-1" style={{ color: 'var(--text-tertiary)' }}>Previous Case Study</p>
             <p className="text-base md:text-lg font-medium flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-              <ArrowRight className="w-4 h-4 rotate-180" />
-              monday.com
+              <ArrowRight className="w-4 h-4 rotate-180" /> monday.com
             </p>
           </div>
           <div className="text-right">
-            <p className="text-[11px] uppercase tracking-[0.15em] mb-1" style={{ color: 'var(--text-tertiary)' }}>
-              Next Case Study
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.15em] mb-1" style={{ color: 'var(--text-tertiary)' }}>Next Case Study</p>
             <p className="text-base md:text-lg font-medium flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-              Bluevine
-              <ArrowRight className="w-4 h-4" />
+              Bluevine <ArrowRight className="w-4 h-4" />
             </p>
           </div>
         </div>
