@@ -73,6 +73,7 @@
   --font-sans:    'Poppins', sans-serif;
   --font-display: 'Instrument Sans', sans-serif;
   --font-alt:     'Inter', sans-serif;
+  --font-serif:   'Playfair Display', serif;
 
   /* Type scale — desktop sizes (mobile handled by responsive TW classes) */
   --text-display: 48px;   /* Quote banners, hero impact text     */

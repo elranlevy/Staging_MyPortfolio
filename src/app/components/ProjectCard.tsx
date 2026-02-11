@@ -1,91 +1,108 @@
 import { motion } from 'motion/react';
+import { ArrowRight } from 'lucide-react';
 
 /* ================================================================
-   ProjectCard — Home page project showcase card
+   ProjectCard — Elegant project showcase card
    ================================================================
-   Uses design tokens for all colors, spacing, typography, and radii.
-   Lives in the snap-scroll homepage grid.
+   Inspired by natalielabel.com: horizontal layout with tags,
+   subtle hover effects, and a clean text CTA.
    ================================================================ */
 
 interface ProjectCardProps {
   title: string;
   description: string;
   imageSrc: string;
-  backgroundColor?: string;
+  tags?: string[];
   imagePosition?: 'left' | 'right';
   onClick?: () => void;
+  /** @deprecated kept for backward compat — use tags instead */
+  backgroundColor?: string;
 }
 
 export function ProjectCard({
   title,
   description,
   imageSrc,
-  backgroundColor = 'var(--surface-primary)',
+  tags = [],
   imagePosition = 'right',
   onClick,
 }: ProjectCardProps) {
   return (
-    <div
-      className="h-screen flex items-center justify-center px-[var(--content-px)] md:px-[var(--content-px-md)] lg:px-[var(--content-px-lg)] snap-start snap-always"
-      style={{ backgroundColor }}
+    <motion.div
+      className="group cursor-pointer"
+      onClick={onClick}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
     >
       <div
-        className={`flex flex-col-reverse ${
+        className={`flex flex-col ${
           imagePosition === 'left' ? 'lg:flex-row-reverse' : 'lg:flex-row'
-        } items-center justify-center gap-[var(--space-8)] lg:gap-[var(--space-12)] xl:gap-[var(--space-20)] w-full max-w-7xl`}
+        } items-center gap-8 lg:gap-12 rounded-2xl p-6 md:p-10 lg:p-12 transition-colors duration-500`}
+        style={{ backgroundColor: 'var(--surface-secondary)' }}
+        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#ececec')}
+        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--surface-secondary)')}
       >
-        {/* Content */}
-        <motion.div
-          className="flex flex-col gap-[var(--space-4)] md:gap-[var(--space-6)] w-full max-w-[508px] px-[var(--space-4)] md:px-0"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        >
-          {/* Title label */}
-          <div className="flex items-center justify-start p-[var(--space-2)]">
-            <p className="type-label !normal-case">
-              {title}
-            </p>
-          </div>
+        {/* Text Content */}
+        <div className="flex-1 flex flex-col gap-4 md:gap-5 w-full">
+          {/* Tags */}
+          {tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-[11px] uppercase tracking-[0.15em] px-3 py-1 rounded-full"
+                  style={{
+                    color: 'var(--text-tertiary)',
+                    backgroundColor: 'rgba(255,255,255,0.85)',
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Title */}
+          <h3
+            className="text-xl md:text-2xl lg:text-3xl font-extralight leading-tight"
+            style={{ color: 'var(--text-primary)' }}
+          >
+            {title}
+          </h3>
 
           {/* Description */}
-          <div className="flex items-center justify-center p-[var(--space-2)]">
-            <p className="font-[var(--weight-extralight)] text-text-primary text-[22px] md:text-[28px] leading-tight tracking-[var(--tracking-tight)]">
-              {description}
-            </p>
-          </div>
+          <p
+            className="text-sm md:text-base font-light leading-relaxed max-w-md"
+            style={{ color: 'var(--text-secondary)' }}
+          >
+            {description}
+          </p>
 
-          {/* CTA button */}
-          <div className="flex flex-col items-start p-[var(--space-2)] w-full max-w-[217px]">
-            <button
-              onClick={onClick}
-              className="bg-brand hover:bg-brand-hover transition-colors duration-[var(--duration-normal)] w-full h-[var(--button-height)] flex items-center justify-center px-[var(--button-px)] py-[var(--space-6)] rounded-[var(--button-radius)]"
+          {/* CTA */}
+          <div className="mt-2">
+            <span
+              className="inline-flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all duration-300"
+              style={{ color: 'var(--text-primary)' }}
             >
-              <p className="text-text-inverse text-[var(--text-body)]">
-                Read case study
-              </p>
-            </button>
+              Read Case Study
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Image */}
-        <motion.div
-          className="relative w-full max-w-[90%] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1000px] flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-        >
+        <div className="flex-1 w-full overflow-hidden rounded-xl">
           <img
             src={imageSrc}
             alt={title}
             loading="lazy"
             decoding="async"
-            className="w-full h-auto object-contain max-h-[400px] md:max-h-[500px] lg:max-h-[700px]"
+            className="w-full h-auto object-contain max-h-[350px] md:max-h-[450px] lg:max-h-[500px] group-hover:scale-[1.03] transition-transform duration-700 ease-out"
           />
-        </motion.div>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
