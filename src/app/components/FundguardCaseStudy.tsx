@@ -3,11 +3,12 @@ import CaseStudyFundguardContent from '@/imports/CaseStudyFundguardContent';
 
 interface FundguardCaseStudyProps {
   onNextStudy: () => void;
+  onBack?: () => void;
 }
 
-export function FundguardCaseStudy({ onNextStudy }: FundguardCaseStudyProps) {
+export function FundguardCaseStudy({ onNextStudy, onBack }: FundguardCaseStudyProps) {
   return (
-    <CaseStudyLayout>
+    <CaseStudyLayout onBack={onBack}>
       <CaseStudyFundguardContent onNextStudy={onNextStudy} />
     </CaseStudyLayout>
   );

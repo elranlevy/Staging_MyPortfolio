@@ -3,11 +3,12 @@ import CaseStudyMondayContent from '@/imports/CaseStudyMondayContent';
 
 interface MondayCaseStudyProps {
   onNextStudy: () => void;
+  onBack?: () => void;
 }
 
-export function MondayCaseStudy({ onNextStudy }: MondayCaseStudyProps) {
+export function MondayCaseStudy({ onNextStudy, onBack }: MondayCaseStudyProps) {
   return (
-    <CaseStudyLayout>
+    <CaseStudyLayout onBack={onBack}>
       <CaseStudyMondayContent onNextStudy={onNextStudy} />
     </CaseStudyLayout>
   );

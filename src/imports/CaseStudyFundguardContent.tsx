@@ -118,7 +118,7 @@ export default function CaseStudyFundguardContent({ onNextStudy }: { onNextStudy
               style={{ borderTop: '1px solid var(--border-subtle)' }}
             >
               {[
-                { label: 'Role', value: 'Senior Product Designer' },
+                { label: 'Role', value: 'Head of Product Design' },
                 { label: 'Team', value: 'PM · 6 Engineers · Data Science · Enterprise Operations' },
                 { label: 'Scope', value: 'Core reconciliation & fund hierarchy workflows' },
                 { label: 'Impact', value: '+30% automation adoption · 25% faster resolution · Reduced config errors' },

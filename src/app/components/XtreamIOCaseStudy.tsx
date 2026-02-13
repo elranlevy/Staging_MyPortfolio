@@ -3,11 +3,12 @@ import CaseStudyXreamioContent from '@/imports/CaseStudyXreamioContent';
 
 interface XtreamIOCaseStudyProps {
   onNextStudy: () => void;
+  onBack?: () => void;
 }
 
-export function XtreamIOCaseStudy({ onNextStudy }: XtreamIOCaseStudyProps) {
+export function XtreamIOCaseStudy({ onNextStudy, onBack }: XtreamIOCaseStudyProps) {
   return (
-    <CaseStudyLayout>
+    <CaseStudyLayout onBack={onBack}>
       <CaseStudyXreamioContent onNextStudy={onNextStudy} />
     </CaseStudyLayout>
   );

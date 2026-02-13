@@ -9,6 +9,7 @@ import { ArrowRight } from 'lucide-react';
    ================================================================ */
 
 interface ProjectCardProps {
+  id?: string;
   title: string;
   description: string;
   imageSrc: string;
@@ -20,6 +21,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({
+  id,
   title,
   description,
   imageSrc,
@@ -29,6 +31,7 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <motion.div
+      id={id}
       className="group cursor-pointer"
       onClick={onClick}
       initial={{ opacity: 0, y: 40 }}

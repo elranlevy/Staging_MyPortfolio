@@ -3,11 +3,12 @@ import CaseStudyBluevineContent from '@/imports/CaseStudyBluevineContent';
 
 interface BluevineCaseStudyProps {
   onNextStudy: () => void;
+  onBack?: () => void;
 }
 
-export function BluevineCaseStudy({ onNextStudy }: BluevineCaseStudyProps) {
+export function BluevineCaseStudy({ onNextStudy, onBack }: BluevineCaseStudyProps) {
   return (
-    <CaseStudyLayout>
+    <CaseStudyLayout onBack={onBack}>
       <CaseStudyBluevineContent onNextStudy={onNextStudy} />
     </CaseStudyLayout>
   );

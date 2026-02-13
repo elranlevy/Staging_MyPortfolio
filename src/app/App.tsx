@@ -33,6 +33,14 @@ export function App() {
     window.scrollTo({ top: 0 });
   };
 
+  const navigateBackToProject = (projectId: string) => {
+    window.history.pushState({ page: 'home' }, '');
+    setCurrentPage('home');
+    setTimeout(() => {
+      document.getElementById(projectId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 150);
+  };
+
   useEffect(() => {
     window.history.replaceState({ page: 'home' }, '');
 
@@ -67,15 +75,15 @@ export function App() {
       case 'contact':
         return <ContactPage />;
       case 'fundguard':
-        return <FundguardCaseStudy onNextStudy={() => navigateTo('monday')} />;
+        return <FundguardCaseStudy onNextStudy={() => navigateTo('monday')} onBack={() => navigateBackToProject('project-fundguard')} />;
       case 'bit':
-        return <BitCaseStudy onNextStudy={() => navigateTo('bluevine')} />;
+        return <BitCaseStudy onNextStudy={() => navigateTo('bluevine')} onBack={() => navigateBackToProject('project-bit')} />;
       case 'xtreamio':
-        return <XtreamIOCaseStudy onNextStudy={() => navigateTo('fundguard')} />;
+        return <XtreamIOCaseStudy onNextStudy={() => navigateTo('fundguard')} onBack={() => navigateBackToProject('project-xtreamio')} />;
       case 'monday':
-        return <MondayCaseStudy onNextStudy={() => navigateTo('bit')} />;
+        return <MondayCaseStudy onNextStudy={() => navigateTo('bit')} onBack={() => navigateBackToProject('project-monday')} />;
       case 'bluevine':
-        return <BluevineCaseStudy onNextStudy={() => navigateTo('xtreamio')} />;
+        return <BluevineCaseStudy onNextStudy={() => navigateTo('xtreamio')} onBack={() => navigateBackToProject('project-bluevine')} />;
       default:
         return renderHomePage();
     }
@@ -230,6 +238,7 @@ export function App() {
           <div className="flex flex-col gap-10 md:gap-14">
             {/* Fundguard */}
             <ProjectCard
+              id="project-fundguard"
               title="Fundguard"
               description="Turning Operational Complexity into Clear, Actionable Systems. Designing scalable workflows for investment operations teams."
               imageSrc={imgMacStudio}
@@ -240,6 +249,7 @@ export function App() {
 
             {/* Monday.com */}
             <ProjectCard
+              id="project-monday"
               title="monday.com"
               description="Designing monetization and conversion experiences for a work management platform used by millions of users worldwide."
               imageSrc={imgMondayMacBook}
@@ -250,6 +260,7 @@ export function App() {
 
             {/* Bit App */}
             <ProjectCard
+              id="project-bit"
               title="bit - app"
               description="Israel's leading P2P payments app - designing a lean, data-driven money transfer experience for millions of users."
               imageSrc={imgIPhone15Pro}
@@ -260,6 +271,7 @@ export function App() {
 
             {/* Bluevine */}
             <ProjectCard
+              id="project-bluevine"
               title="Bluevine"
               description="Designing banking and lending experiences that help small businesses manage their finances quickly and confidently."
               imageSrc={imgBluevinePhones}
@@ -270,6 +282,7 @@ export function App() {
 
             {/* XtreamIO */}
             <ProjectCard
+              id="project-xtreamio"
               title="Xtream IO"
               description="An all-flash storage platform delivering high performance, scalability, and simplified data management for enterprise."
               imageSrc={imgIPadMini}

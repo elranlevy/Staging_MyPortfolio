@@ -3,11 +3,12 @@ import CaseStudyBitContent from '@/imports/CaseStudyBitContent';
 
 interface BitCaseStudyProps {
   onNextStudy: () => void;
+  onBack?: () => void;
 }
 
-export function BitCaseStudy({ onNextStudy }: BitCaseStudyProps) {
+export function BitCaseStudy({ onNextStudy, onBack }: BitCaseStudyProps) {
   return (
-    <CaseStudyLayout>
+    <CaseStudyLayout onBack={onBack}>
       <CaseStudyBitContent onNextStudy={onNextStudy} />
     </CaseStudyLayout>
   );

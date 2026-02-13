@@ -16,14 +16,15 @@ import { ArrowLeft } from 'lucide-react';
 
 interface CaseStudyLayoutProps {
   children: ReactNode;
+  onBack?: () => void;
 }
 
-export function CaseStudyLayout({ children }: CaseStudyLayoutProps) {
+export function CaseStudyLayout({ children, onBack }: CaseStudyLayoutProps) {
   return (
     <div className="h-dvh relative overflow-hidden bg-surface-primary">
       {/* Back button - floating */}
       <motion.button
-        onClick={() => window.history.back()}
+        onClick={() => (onBack ? onBack() : window.history.back())}
         className="absolute top-5 left-6 md:left-12 lg:left-16 z-50 group flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm font-light hover:bg-white transition-all duration-300 cursor-pointer"
         style={{ color: 'var(--text-primary)' }}
         initial={{ y: -40, opacity: 0 }}
