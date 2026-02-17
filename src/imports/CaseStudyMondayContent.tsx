@@ -39,6 +39,7 @@ import imgDiscovery213 from 'figma:asset/46afff3de4b74b1fcd9fb6e6c6e34dc0511a134
 import imgPromoted214 from 'figma:asset/2abdc6c0f0e1dc734eb659df7608c23f65d0828f.png';
 import imgPromoted215 from 'figma:asset/590fcf0486ea5c0624f74a9ad643a26091276ee4.png';
 import imgAbChart from '@/assets/monday-ab-chart.png';
+import imgProCongratsModal from '@/assets/monday-pro-congrats-modal.png';
 import imgDiscoveryValue1 from '@/assets/monday-discovery-value-1.png';
 import imgDiscoveryValue2 from '@/assets/monday-discovery-value-2.png';
 import imgPromotedMatch1 from '@/assets/monday-promoted-match-1.png';
@@ -602,7 +603,7 @@ export default function CaseStudyMondayContent({ onNextStudy }: { onNextStudy?: 
           <Reveal><img src={imgAbChart} alt="Conversion trend chart" className="w-full h-auto rounded-xl mb-5" loading="lazy" decoding="async" /></Reveal>
           <Reveal>
             <div className="rounded-xl overflow-hidden p-5 md:p-8" style={{ backgroundColor: 'var(--color-gray-600, #555)' }}>
-              <img src={imgStep4} alt="A/B test result" className="w-full h-auto rounded-lg" loading="lazy" decoding="async" />
+              <img src={imgProCongratsModal} alt="Pro plan upgrade success modal" className="w-full h-auto rounded-lg" loading="lazy" decoding="async" />
             </div>
           </Reveal>
 

@@ -26,6 +26,7 @@ import {
 
 /* ── Existing images ─────────────────────────────────────────── */
 import imgHero from 'figma:asset/88da6de6a1b666a471ee6930a733125a1b7e710e.png';
+import imgHeroDark from '@/assets/bluevine-banking-hero-dark.png';
 import imgImage184 from 'figma:asset/07a42507cb22cafb6d39b51c9254b4d2088abbb3.png';
 import imgImage185 from 'figma:asset/0951004d47003d3e5824dd6b6ee4a2a692f1c14f.png';
 import imgImage186 from 'figma:asset/37c8c497c64b1de3f237409d508123bfd7436060.png';
@@ -123,7 +124,7 @@ function OnboardingCarousel({ images, variant = 'mobile' }: { images: string[]; 
       <button
         onClick={prev}
         className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center backdrop-blur-sm transition-colors cursor-pointer"
-        style={{ backgroundColor: 'rgba(255,255,255,0.7)', color: 'var(--text-primary)' }}
+        style={{ backgroundColor: 'var(--carousel-nav-bg)', color: 'var(--text-primary)' }}
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
@@ -131,7 +132,7 @@ function OnboardingCarousel({ images, variant = 'mobile' }: { images: string[]; 
       <button
         onClick={next}
         className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center backdrop-blur-sm transition-colors cursor-pointer"
-        style={{ backgroundColor: 'rgba(255,255,255,0.7)', color: 'var(--text-primary)' }}
+        style={{ backgroundColor: 'var(--carousel-nav-bg)', color: 'var(--text-primary)' }}
         aria-label="Next slide"
       >
         <ChevronRight className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
@@ -217,7 +218,7 @@ function DashboardCarousel({ images }: { images: string[] }) {
       <button
         onClick={prev}
         className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center backdrop-blur-sm transition-colors cursor-pointer"
-        style={{ backgroundColor: 'rgba(255,255,255,0.7)', color: 'var(--text-primary)' }}
+        style={{ backgroundColor: 'var(--carousel-nav-bg)', color: 'var(--text-primary)' }}
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
@@ -225,7 +226,7 @@ function DashboardCarousel({ images }: { images: string[] }) {
       <button
         onClick={next}
         className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center backdrop-blur-sm transition-colors cursor-pointer"
-        style={{ backgroundColor: 'rgba(255,255,255,0.7)', color: 'var(--text-primary)' }}
+        style={{ backgroundColor: 'var(--carousel-nav-bg)', color: 'var(--text-primary)' }}
         aria-label="Next slide"
       >
         <ChevronRight className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
@@ -306,7 +307,8 @@ export default function CaseStudyBluevineContent({ onNextStudy }: { onNextStudy?
 
       <Reveal>
         <div className="max-w-3xl mx-auto px-6 md:px-12 pb-4">
-          <img src={imgHero} alt="BlueVine banking experience" className="w-full h-auto rounded-xl" loading="eager" decoding="async" />
+          <img src={imgHero} alt="BlueVine banking experience" className="w-full h-auto rounded-xl show-in-light" loading="eager" decoding="async" />
+          <img src={imgHeroDark} alt="BlueVine banking experience" className="w-full h-auto rounded-xl show-in-dark" loading="eager" decoding="async" />
         </div>
       </Reveal>
 
@@ -420,7 +422,7 @@ export default function CaseStudyBluevineContent({ onNextStudy }: { onNextStudy?
 
           {/* Research insights */}
           <Reveal delay={0.3}>
-            <div className="rounded-xl p-6 md:p-8" style={{ backgroundColor: '#eef2ff' }}>
+            <div className="rounded-xl p-6 md:p-8" style={{ backgroundColor: 'var(--research-insights-bg)' }}>
               <p className="text-[10px] uppercase tracking-[0.2em] mb-4" style={{ color: '#6366f1' }}>Research Insights</p>
               <div className="flex flex-wrap gap-3 mb-4">
                 {[
@@ -456,7 +458,7 @@ export default function CaseStudyBluevineContent({ onNextStudy }: { onNextStudy?
       {/* ═══════════════════════════════════════════════════════
           MAIN INSIGHT - Soft blue-tinted band
           ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 px-6 md:px-12" style={{ backgroundColor: '#eef2ff' }}>
+      <section className="py-20 md:py-28 px-6 md:px-12" style={{ backgroundColor: 'var(--research-insights-bg)' }}>
         <div className="max-w-3xl mx-auto text-center">
           <Reveal>
             <p className="text-[11px] uppercase tracking-[0.3em] mb-8" style={{ color: '#6366f1' }}>Main Insight</p>

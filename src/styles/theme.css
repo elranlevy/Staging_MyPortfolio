@@ -238,6 +238,20 @@
     content-visibility: auto;
     contain-intrinsic-size: auto 300px;
   }
+
+  /* Theme-aware image swap: show one in light mode, other in dark */
+  .show-in-light {
+    display: block;
+  }
+  html.dark .show-in-light {
+    display: none;
+  }
+  .show-in-dark {
+    display: none;
+  }
+  html.dark .show-in-dark {
+    display: block;
+  }
 }
 
 /* ── Keyframe animations ──────────────────────────────────────

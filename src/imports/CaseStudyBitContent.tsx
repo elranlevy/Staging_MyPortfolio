@@ -133,7 +133,7 @@ function MobileCarousel({ images }: { images: string[] }) {
       <button
         onClick={prev}
         className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center backdrop-blur-sm transition-colors cursor-pointer"
-        style={{ backgroundColor: 'rgba(255,255,255,0.7)', color: 'var(--text-primary)' }}
+        style={{ backgroundColor: 'var(--carousel-nav-bg)', color: 'var(--text-primary)' }}
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
@@ -141,7 +141,7 @@ function MobileCarousel({ images }: { images: string[] }) {
       <button
         onClick={next}
         className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center backdrop-blur-sm transition-colors cursor-pointer"
-        style={{ backgroundColor: 'rgba(255,255,255,0.7)', color: 'var(--text-primary)' }}
+        style={{ backgroundColor: 'var(--carousel-nav-bg)', color: 'var(--text-primary)' }}
         aria-label="Next slide"
       >
         <ChevronRight className="w-4 h-4 md:w-5 md:h-5" strokeWidth={2} />
@@ -494,7 +494,7 @@ export default function CaseStudyBitContent({ onNextStudy }: { onNextStudy?: () 
           ═══════════════════════════════════════════════════════ */}
       <section
         className="py-24 md:py-36 px-6 md:px-12"
-        style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)' }}
+        style={{ background: 'var(--key-insight-bg)' }}
       >
         <div className="max-w-3xl mx-auto text-center">
           <Reveal>
@@ -720,7 +720,7 @@ export default function CaseStudyBitContent({ onNextStudy }: { onNextStudy?: () 
           <Reveal delay={0.15}>
             <img src={imgAnnotatedFlow2} alt="Amount entry and transfer reason" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" />
           </Reveal>
-          <Reveal delay={0.2}>
+          <Reveal delay={0.2} className="mt-[60px]">
             <img src={imgAnnotatedFlow3} alt="Password confirmation and transfer summary" className="w-full h-auto rounded-xl" loading="lazy" decoding="async" />
           </Reveal>
         </div>

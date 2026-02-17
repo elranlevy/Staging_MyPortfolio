@@ -204,11 +204,11 @@ export function App() {
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
             className="w-[22px] h-[36px] rounded-full flex items-start justify-center pt-2"
-            style={{ border: '1.5px solid rgba(24,39,48,0.25)' }}
+            style={{ border: '1.5px solid var(--scroll-indicator-border)' }}
           >
             <div
               className="w-[3px] h-[6px] rounded-full"
-              style={{ backgroundColor: 'rgba(24,39,48,0.35)' }}
+              style={{ backgroundColor: 'var(--scroll-indicator-dot)' }}
             />
           </motion.div>
         </motion.div>

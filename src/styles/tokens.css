@@ -68,6 +68,17 @@
   --tag-bg: rgba(255,255,255,0.85);
   --insight-bg: #faf7f2;
   --step-circle-bg: var(--color-gray-900);
+  /* KEY INSIGHT band: gradient in light, solid dark in dark mode */
+  --key-insight-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  /* Research insights box: light in light mode, dark in dark mode */
+  --research-insights-bg: #eef2ff;
+  /* Step/pill tags: white in light mode, dark in dark mode */
+  --step-pill-bg: #ffffff;
+  /* Carousel prev/next buttons: light in light mode, dark in dark mode */
+  --carousel-nav-bg: rgba(255, 255, 255, 0.7);
+  /* Hero scroll indicator: dark in light mode, white in dark mode */
+  --scroll-indicator-border: rgba(24, 39, 48, 0.25);
+  --scroll-indicator-dot: rgba(24, 39, 48, 0.35);
 
   /* Ring / Focus */
   --ring: var(--brand);
@@ -232,4 +243,10 @@ html.dark {
   --tag-bg: #191c1f;
   --insight-bg: #191c1f;
   --step-circle-bg: #191c1f;
+  --key-insight-bg: var(--surface-primary);
+  --research-insights-bg: var(--surface-secondary);
+  --step-pill-bg: var(--surface-secondary);
+  --carousel-nav-bg: rgba(0, 0, 0, 0.5);
+  --scroll-indicator-border: rgba(255, 255, 255, 0.4);
+  --scroll-indicator-dot: rgba(255, 255, 255, 0.7);
 }

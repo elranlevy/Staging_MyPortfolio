@@ -29,6 +29,7 @@ import imgImage176 from 'figma:asset/d4d58b02892ddfba3736780450879b582c47390e.pn
 import imgClusterStatus from 'figma:asset/1310cf6034e7996a8a437beaf595a9e75ee70205.png';
 import imgHealthStatus from '@/assets/xtreamio-health-status.png';
 import imgProtectionDialog from '@/assets/xtremio-protection-dialog.png';
+import imgProtectionDialogDark from '@/assets/xtremio-protection-dialog-dark.png';
 import imgImage178 from 'figma:asset/d7831a442bc44faf1090c9e711599d69abfabc41.png';
 import imgImage177 from 'figma:asset/84697da8fef42b33bbdcddc2442ef98a82019325.png';
 
@@ -391,7 +392,7 @@ export default function CaseStudyXreamioContent({ onNextStudy }: { onNextStudy?:
               <div className="flex flex-wrap items-center gap-2 md:gap-3">
                 {['Select VM\u2019s', 'Select sites', 'Create consistency group', 'Add Resources'].map((step, i, arr) => (
                   <div key={i} className="flex items-center gap-2 md:gap-3">
-                    <span className="px-3 py-1.5 rounded-md text-xs font-light whitespace-nowrap" style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'white' }}>{step}</span>
+                    <span className="px-3 py-1.5 rounded-md text-xs font-light whitespace-nowrap" style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'var(--step-pill-bg)' }}>{step}</span>
                     {i < arr.length - 1 && <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>→</span>}
                   </div>
                 ))}
@@ -399,7 +400,7 @@ export default function CaseStudyXreamioContent({ onNextStudy }: { onNextStudy?:
               <div className="flex flex-wrap items-center gap-2 md:gap-3 mt-3">
                 {['Replication Settings', 'RPO Settings', 'Snapshot frequency'].map((step, i, arr) => (
                   <div key={i} className="flex items-center gap-2 md:gap-3">
-                    <span className="px-3 py-1.5 rounded-md text-xs font-light whitespace-nowrap" style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'white' }}>{step}</span>
+                    <span className="px-3 py-1.5 rounded-md text-xs font-light whitespace-nowrap" style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'var(--step-pill-bg)' }}>{step}</span>
                     {i < arr.length - 1 && <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>→</span>}
                   </div>
                 ))}
@@ -407,7 +408,7 @@ export default function CaseStudyXreamioContent({ onNextStudy }: { onNextStudy?:
               <div className="flex flex-wrap items-center gap-2 md:gap-3 mt-3">
                 {['Consolidation settings', 'Protection settings'].map((step, i) => (
                   <div key={i} className="flex items-center gap-2 md:gap-3">
-                    <span className="px-3 py-1.5 rounded-md text-xs font-light whitespace-nowrap" style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'white' }}>{step}</span>
+                    <span className="px-3 py-1.5 rounded-md text-xs font-light whitespace-nowrap" style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'var(--step-pill-bg)' }}>{step}</span>
                     <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>→</span>
                   </div>
                 ))}
@@ -429,10 +430,10 @@ export default function CaseStudyXreamioContent({ onNextStudy }: { onNextStudy?:
             <p className="text-[10px] uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--text-tertiary)' }}>After</p>
             <div className="rounded-xl p-6 md:p-8" style={{ backgroundColor: 'var(--surface-secondary)' }}>
               <div className="flex items-start gap-3 md:gap-4">
-                <span className="px-3 py-1.5 rounded-md text-xs font-light whitespace-nowrap" style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'white' }}>Select VM&rsquo;s</span>
+                <span className="px-3 py-1.5 rounded-md text-xs font-light whitespace-nowrap" style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'var(--step-pill-bg)' }}>Select VM&rsquo;s</span>
                 <span className="text-xs pt-1.5" style={{ color: 'var(--text-tertiary)' }}>→</span>
                 <div className="flex flex-col items-center">
-                  <span className="px-3 py-1.5 rounded-md text-xs font-light whitespace-nowrap" style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'white' }}>Select Policy</span>
+                  <span className="px-3 py-1.5 rounded-md text-xs font-light whitespace-nowrap" style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'var(--step-pill-bg)' }}>Select Policy</span>
                   <div className="w-px h-5 mt-2" style={{ backgroundColor: 'var(--border-subtle)' }} />
                   <span className="px-3 py-1.5 rounded-md text-[11px] font-light mt-1" style={{ border: '1px dashed var(--border-subtle)', color: 'var(--text-tertiary)' }}>Advanced</span>
                 </div>
@@ -520,7 +521,14 @@ export default function CaseStudyXreamioContent({ onNextStudy }: { onNextStudy?:
               <img
                 src={imgProtectionDialog}
                 alt="One-click protection simplifies a complex process into a single, confident action"
-                className="w-full h-auto rounded-xl"
+                className="w-full h-auto rounded-xl show-in-light"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src={imgProtectionDialogDark}
+                alt="One-click protection simplifies a complex process into a single, confident action"
+                className="w-full h-auto rounded-xl show-in-dark"
                 loading="lazy"
                 decoding="async"
               />
@@ -642,7 +650,7 @@ export default function CaseStudyXreamioContent({ onNextStudy }: { onNextStudy?:
           </Reveal>
 
           <Reveal delay={0.35}>
-            <div className="max-w-4xl mx-auto my-8 rounded-lg px-8 py-6" style={{ backgroundColor: '#f5f5f5' }}>
+            <div className="max-w-4xl mx-auto my-8 rounded-lg px-8 py-6" style={{ backgroundColor: 'var(--surface-secondary)' }}>
               <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                 This approach reduces ambiguity during monitoring and crisis moments, allowing backup administrators to quickly understand what&rsquo;s happening, why it matters, and when action is required.
               </p>
