@@ -76,7 +76,7 @@ function VerticalDivider() {
    · User quotes as editorial testimony
    · Outlined stat cards on white
    ================================================================ */
-export default function CaseStudyFundguardContent({ onNextStudy }: { onNextStudy?: () => void }) {
+export default function CaseStudyFundguardContent({ onNextStudy, onLearnMore, onLearnMoreV2, onLearnMoreV3, onLearnMoreV4 }: { onNextStudy?: () => void; onLearnMore?: () => void; onLearnMoreV2?: () => void; onLearnMoreV3?: () => void; onLearnMoreV4?: () => void }) {
   return (
     <div style={{ backgroundColor: 'var(--surface-primary)' }}>
       {/* ═══════════════════════════════════════════════════════
@@ -845,6 +845,146 @@ export default function CaseStudyFundguardContent({ onNextStudy }: { onNextStudy
           </Reveal>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          LEARN MORE — Deep dive link
+          ═══════════════════════════════════════════════════════ */}
+      {onLearnMore && (
+        <section className="py-16 md:py-20 px-6 md:px-12 lg:px-16">
+          <Reveal>
+            <div className="max-w-2xl mx-auto text-center">
+              <p
+                className="text-sm font-light mb-4"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                Want the full strategic breakdown?
+              </p>
+              <button
+                onClick={onLearnMore}
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer hover:gap-4"
+                style={{
+                  color: 'white',
+                  backgroundColor: 'var(--text-primary)',
+                }}
+              >
+                Learn More
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
+              <p
+                className="text-xs font-light mt-4 italic"
+                style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-tertiary)' }}
+              >
+                Full case study — strategy, research, AI, execution, and leadership
+              </p>
+            </div>
+          </Reveal>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════
+          LEARN MORE V2 — Deep dive V2 link
+          ═══════════════════════════════════════════════════════ */}
+      {onLearnMoreV2 && (
+        <section className="py-10 md:py-14 px-6 md:px-12 lg:px-16">
+          <Reveal>
+            <div className="max-w-2xl mx-auto text-center">
+              <p
+                className="text-sm font-light mb-4"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                Alternative version — tighter editorial narrative
+              </p>
+              <button
+                onClick={onLearnMoreV2}
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer hover:gap-4"
+                style={{
+                  color: 'var(--text-primary)',
+                  border: '1px solid var(--text-primary)',
+                }}
+              >
+                Learn More — V2
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
+              <p
+                className="text-xs font-light mt-4 italic"
+                style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-tertiary)' }}
+              >
+                Re-Architecting Trust in Enterprise Automation
+              </p>
+            </div>
+          </Reveal>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════
+          LEARN MORE V3 — Deep dive V3 link
+          ═══════════════════════════════════════════════════════ */}
+      {onLearnMoreV3 && (
+        <section className="py-10 md:py-14 px-6 md:px-12 lg:px-16">
+          <Reveal>
+            <div className="max-w-2xl mx-auto text-center">
+              <p
+                className="text-sm font-light mb-4"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                Full narrative — from automation to operational intelligence
+              </p>
+              <button
+                onClick={onLearnMoreV3}
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer hover:gap-4"
+                style={{
+                  color: 'var(--text-primary)',
+                  border: '1px solid var(--text-primary)',
+                }}
+              >
+                Learn More — V3
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
+              <p
+                className="text-xs font-light mt-4 italic"
+                style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-tertiary)' }}
+              >
+                Row-Level Accuracy to Operational Intelligence — Notifications, AI Triage &amp; A/B Validation
+              </p>
+            </div>
+          </Reveal>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════
+          LEARN MORE V4 — Deep dive V4 link
+          ═══════════════════════════════════════════════════════ */}
+      {onLearnMoreV4 && (
+        <section className="py-10 md:py-14 px-6 md:px-12 lg:px-16">
+          <Reveal>
+            <div className="max-w-2xl mx-auto text-center">
+              <p
+                className="text-sm font-light mb-4"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                Visual journey — infographic-driven deep dive
+              </p>
+              <button
+                onClick={onLearnMoreV4}
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer hover:gap-4"
+                style={{
+                  color: 'var(--text-primary)',
+                  border: '1px solid var(--text-primary)',
+                }}
+              >
+                Learn More — V4
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
+              <p
+                className="text-xs font-light mt-4 italic"
+                style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-tertiary)' }}
+              >
+                Infographic Visual Journey — Data-Driven, Color-Coded, Process Flow
+              </p>
+            </div>
+          </Reveal>
+        </section>
+      )}
 
       {/* ═══════════════════════════════════════════════════════
           NAVIGATION

@@ -9,6 +9,10 @@ import { BitCaseStudy } from '@/app/components/BitCaseStudy';
 import { XtreamIOCaseStudy } from '@/app/components/XtreamIOCaseStudy';
 import { MondayCaseStudy } from '@/app/components/MondayCaseStudy';
 import { BluevineCaseStudy } from '@/app/components/BluevineCaseStudy';
+import { FundguardDeepDiveCaseStudy } from '@/app/components/FundguardDeepDiveCaseStudy';
+import { FundguardDeepDiveV2CaseStudy } from '@/app/components/FundguardDeepDiveV2CaseStudy';
+import { FundguardDeepDiveV3CaseStudy } from '@/app/components/FundguardDeepDiveV3CaseStudy';
+import { FundguardDeepDiveV4CaseStudy } from '@/app/components/FundguardDeepDiveV4CaseStudy';
 
 /* -- Project images ------------------------------------------------ */
 import imgMacStudio from 'figma:asset/4decb3fa846a4088c678f19d989b02718036933a.png';
@@ -30,7 +34,7 @@ export function App() {
     return false;
   });
   const [currentPage, setCurrentPage] = useState<
-    'home' | 'contact' | 'fundguard' | 'bit' | 'xtreamio' | 'monday' | 'bluevine'
+    'home' | 'contact' | 'fundguard' | 'fundguard-deep-dive' | 'fundguard-deep-dive-v2' | 'fundguard-deep-dive-v3' | 'fundguard-deep-dive-v4' | 'bit' | 'xtreamio' | 'monday' | 'bluevine'
   >('home');
 
   useEffect(() => {
@@ -87,7 +91,15 @@ export function App() {
       case 'contact':
         return <ContactPage />;
       case 'fundguard':
-        return <FundguardCaseStudy onNextStudy={() => navigateTo('monday')} onBack={() => navigateBackToProject('project-fundguard')} />;
+        return <FundguardCaseStudy onNextStudy={() => navigateTo('monday')} onLearnMore={() => navigateTo('fundguard-deep-dive')} onLearnMoreV2={() => navigateTo('fundguard-deep-dive-v2')} onLearnMoreV3={() => navigateTo('fundguard-deep-dive-v3')} onLearnMoreV4={() => navigateTo('fundguard-deep-dive-v4')} onBack={() => navigateBackToProject('project-fundguard')} />;
+      case 'fundguard-deep-dive':
+        return <FundguardDeepDiveCaseStudy onBackToFundguard={() => navigateTo('fundguard')} onBack={() => navigateTo('fundguard')} />;
+      case 'fundguard-deep-dive-v2':
+        return <FundguardDeepDiveV2CaseStudy onBackToFundguard={() => navigateTo('fundguard')} onBack={() => navigateTo('fundguard')} />;
+      case 'fundguard-deep-dive-v3':
+        return <FundguardDeepDiveV3CaseStudy onBackToFundguard={() => navigateTo('fundguard')} onBack={() => navigateTo('fundguard')} />;
+      case 'fundguard-deep-dive-v4':
+        return <FundguardDeepDiveV4CaseStudy onBackToFundguard={() => navigateTo('fundguard')} onBack={() => navigateTo('fundguard')} />;
       case 'bit':
         return <BitCaseStudy onNextStudy={() => navigateTo('bluevine')} onBack={() => navigateBackToProject('project-bit')} />;
       case 'xtreamio':
