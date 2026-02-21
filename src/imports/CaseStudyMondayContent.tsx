@@ -93,7 +93,7 @@ function MondayLogo() {
    · Horizontal metric strip results
    · Dark closing band with pattern
    ================================================================ */
-export default function CaseStudyMondayContent({ onNextStudy }: { onNextStudy?: () => void }) {
+export default function CaseStudyMondayContent({ onNextStudy, onLearnMore }: { onNextStudy?: () => void; onLearnMore?: () => void }) {
   return (
     <div style={{ backgroundColor: 'var(--surface-primary)' }}>
       {/* ═══════════════════════════════════════════════════════
@@ -833,6 +833,35 @@ export default function CaseStudyMondayContent({ onNextStudy }: { onNextStudy?: 
           </Reveal>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          LEARN MORE — Deep dive link
+          ═══════════════════════════════════════════════════════ */}
+      {onLearnMore && (
+        <section className="py-16 md:py-20 px-6 md:px-12 lg:px-16">
+          <Reveal>
+            <div className="max-w-2xl mx-auto text-center">
+              <p
+                className="text-sm font-light mb-4"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                Want the full strategic breakdown?
+              </p>
+              <button
+                onClick={onLearnMore}
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer hover:gap-4"
+                style={{
+                  color: 'white',
+                  backgroundColor: 'var(--text-primary)',
+                }}
+              >
+                Read the Deep Dive
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </Reveal>
+        </section>
+      )}
 
       {/* ═══════════════════════════════════════════════════════
           NAVIGATION

@@ -13,6 +13,7 @@ import { FundguardDeepDiveCaseStudy } from '@/app/components/FundguardDeepDiveCa
 import { FundguardDeepDiveV2CaseStudy } from '@/app/components/FundguardDeepDiveV2CaseStudy';
 import { FundguardDeepDiveV3CaseStudy } from '@/app/components/FundguardDeepDiveV3CaseStudy';
 import { FundguardDeepDiveV4CaseStudy } from '@/app/components/FundguardDeepDiveV4CaseStudy';
+import { MondayDeepDiveCaseStudy } from '@/app/components/MondayDeepDiveCaseStudy';
 
 /* -- Project images ------------------------------------------------ */
 import imgMacStudio from 'figma:asset/4decb3fa846a4088c678f19d989b02718036933a.png';
@@ -34,7 +35,7 @@ export function App() {
     return false;
   });
   const [currentPage, setCurrentPage] = useState<
-    'home' | 'contact' | 'fundguard' | 'fundguard-deep-dive' | 'fundguard-deep-dive-v2' | 'fundguard-deep-dive-v3' | 'fundguard-deep-dive-v4' | 'bit' | 'xtreamio' | 'monday' | 'bluevine'
+    'home' | 'contact' | 'fundguard' | 'fundguard-deep-dive' | 'fundguard-deep-dive-v2' | 'fundguard-deep-dive-v3' | 'fundguard-deep-dive-v4' | 'bit' | 'xtreamio' | 'monday' | 'monday-deep-dive' | 'bluevine'
   >('home');
 
   useEffect(() => {
@@ -105,7 +106,9 @@ export function App() {
       case 'xtreamio':
         return <XtreamIOCaseStudy onNextStudy={() => navigateTo('fundguard')} onBack={() => navigateBackToProject('project-xtreamio')} />;
       case 'monday':
-        return <MondayCaseStudy onNextStudy={() => navigateTo('bit')} onBack={() => navigateBackToProject('project-monday')} />;
+        return <MondayCaseStudy onNextStudy={() => navigateTo('bit')} onLearnMore={() => navigateTo('monday-deep-dive')} onBack={() => navigateBackToProject('project-monday')} />;
+      case 'monday-deep-dive':
+        return <MondayDeepDiveCaseStudy onBackToMonday={() => navigateTo('monday')} onBack={() => navigateTo('monday')} />;
       case 'bluevine':
         return <BluevineCaseStudy onNextStudy={() => navigateTo('xtreamio')} onBack={() => navigateBackToProject('project-bluevine')} />;
       default:
